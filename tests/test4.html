@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>galleri</title>
+  </head>
+
+  <body>
+    <script>
+      const url = "https://persongalleri-5d3e.restdb.io/rest/persongalleri";
+      const key = "600fe9211346a1524ff12e31";
+
+      async function hentData() {
+        const resspons = await fetch(url, {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+            "x-apikey": key,
+          },
+        });
+        const json = await resspons.json();
+        vis(json);
+      }
+
+      function vis(json) {
+        console.log(json);
+      }
+
+      hentData();
+    </script>
+  </body>
+</html>

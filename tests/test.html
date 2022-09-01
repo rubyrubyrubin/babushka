@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>B</title>
+  </head>
+
+  <body>
+    <main></main>
+
+    <template>
+      <article>
+        <h2 class="navn"></h2>
+        <p class="beskrivelse"></p>
+        <p class="pris"></p>
+      </article>
+    </template>
+
+    <script>
+      const url = "https://babushka-dd8a.restdb.io/rest/menu";
+      const key = "600ec2fb1346a1524ff12de4";
+
+      async function hentData() {
+        const resspons = await fetch(url, {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+            "x-apikey": key,
+          },
+        });
+        const json = await resspons.json();
+        vis(json);
+      }
+
+      const main = document.querySelector("main");
+      const template = document.querySelector("template").content;
+
+      function vis(json) {
+        console.log(json);
+        json.forEach((ret) => {
+          const klon = template.cloneNode(true);
+          klon.querySelector(".navn").textContent = ret.navn;
+          klon.querySelector(".beskrivelse").textContent = ret.kortbeskrivelse;
+          klon.querySelector(".pris").textContent = ret.pris;
+          main.appendChild(klon);
+        });
+      }
+
+      hentData();
+    </script>
+  </body>
+</html>

@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Babushka</title>
+    <style>
+      main {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        grid-gap: 1em;
+        padding: 2rem;
+        padding-inline: 4em;
+      }
+
+      body {
+        background-color: red;
+      }
+
+      article {
+        padding: 0.5em;
+        background-color: white;
+        border-radius: 1em;
+        margin: 0.2em;
+      }
+
+      img {
+        max-width: 100%;
+      }
+
+      p {
+        color: black;
+      }
+
+      h2 {
+        color: black;
+      }
+
+      h1 {
+        color: black;
+      }
+
+      .bb {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding-bottom: 1rem;
+        padding-top: 3rem;
+      }
+
+      .nav {
+        display: flex;
+        justify-content: center;
+        gap: 1em;
+        padding-top: 0.1rem;
+        padding-bottom: 2em;
+      }
+
+      .b-img {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        max-width: 15%;
+        margin: auto;
+        /* border: 0.2em solid white; */
+      }
+    </style>
+  </head>
+
+  <body>
+    <header>
+      <h1 class="bb">Bistro Babushka</h1>
+
+      <nav class="nav">
+        <button class="filterKnap valgt" data-tro="alle">Alle</button>
+        <button class="filterKnap" data-tro="ja">Forretter</button>
+        <button class="filterKnap" data-tro="ja">Hovedretter</button>
+        <button class="filterKnap" data-tro="nej">Desserter</button>
+        <button class="filterKnap" data-tro="tvivler">Drikkevarer</button>
+      </nav>
+      <div class="b-img">
+        <img src="babushka.png" alt="b" />
+      </div>
+    </header>
+    <main></main>
+
+    <template>
+      <article>
+        <img src="" alt="" class="billede" id="inner" />
+        <h2 class="navn"></h2>
+        <p class="beskrivelse"></p>
+        <p class="pris"></p>
+      </article>
+    </template>
+
+    <script>
+      const url = "https://babushka-dd8a.restdb.io/rest/menu";
+      const key = "600ec2fb1346a1524ff12de4";
+
+      async function hentData() {
+        const response = await fetch(url, {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+            "x-apikey": key,
+          },
+        });
+        const json = await response.json();
+        vis(json);
+      }
+
+      const main = document.querySelector("main");
+      const template = document.querySelector("template").content;
+
+      function vis(json) {
+        console.log(json);
+        json.forEach((ret) => {
+          const klon = template.cloneNode(true);
+          klon.querySelector(".billede").src = "medium/" + ret.billede;
+          // klon.querySelector(".billede").src = "https://babushka-dd8a.restdb.io/media/" + ret.billede + "-md.jpg";
+          // klon.querySelector("#inner").style.backgroundImage = "url(medium/" + ret.billede + "-md.jpg)";
+          klon.querySelector(".navn").textContent = ret.navn;
+          klon.querySelector(".beskrivelse").textContent = ret.kortbeskrivelse;
+          klon.querySelector(".pris").textContent = ret.pris;
+          main.appendChild(klon);
+        });
+      }
+
+      hentData();
+    </script>
+  </body>
+</html>

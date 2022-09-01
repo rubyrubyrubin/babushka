@@ -1,0 +1,304 @@
+<!-- KOPT AF #1 BABUSHKA MED NYE NAVNE DER GIVER MERE MENING -->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="noindex" />
+    <title>Babushka</title>
+    <link rel="icon" type="image/svg+xml" href="logo.png" />
+    <style>
+      main {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        grid-gap: 1em;
+        padding: 2rem;
+        padding-inline: 4em;
+      }
+
+      body {
+        /* background: linear-gradient(230deg, #f05a23, #c92314 80.71%), linear-gradient(127deg, #f27b35, #c9271c 70.71%), linear-gradient(336deg, #c92314, #c92314 50.71%); */
+        background: radial-gradient(circle, #f05a23 0%, #c92314 100%);
+      }
+
+      article {
+        padding: 0.5em;
+        background-color: #f2eddf;
+        border-radius: 1em;
+        margin: 0.2em;
+        border: 1px solid black;
+        cursor: pointer;
+      }
+
+      img {
+        max-width: 100%;
+        max-width: 100%;
+        justify-content: center;
+        align-items: center;
+        object-fit: contain;
+      }
+
+      p {
+        color: black;
+        font-family: "Courier New", Courier, monospace;
+      }
+
+      h2 {
+        color: black;
+        font-family: "Courier New", Courier, monospace;
+      }
+
+      h1 {
+        color: #f2eddf;
+        text-shadow: 2px 2px black;
+        font-family: "Courier New", Courier, monospace;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+      }
+
+      .bb {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        /* padding-bottom: 1rem; */
+        /* padding-top: 2rem; */
+      }
+
+      .nav {
+        display: flex;
+        justify-content: center;
+        gap: 1em;
+        padding-top: 0.1rem;
+        padding-bottom: 2em;
+      }
+
+      /* .b-img {
+              display: flex;
+              align-items: start;
+              justify-content: start;
+              max-width: 6%;
+              margin: auto;
+              padding-top: 1em;
+              padding-inline-start: 1em;
+            } */
+
+      .valgt {
+        background-color: yellow;
+      }
+
+      .filterKnap {
+        border-radius: 1em;
+        font-family: "Courier New", Courier, monospace;
+      }
+
+      .nav {
+        display: flex;
+        justify-content: end;
+        align-items: end;
+        top: 100vh;
+        text-align: center;
+        place-content: center;
+        padding-top: 1.5rem;
+        background-color: #f25a38;
+        cursor: pointer;
+      }
+
+      .menubar {
+        margin-top: 2em;
+        background-color: #f25a38;
+        /* box-shadow: 0 0 10px 20px #f86746; */
+        padding-top: 1em;
+      }
+
+      .h1center {
+        text-align: center;
+        /* padding-top: 1em; */
+      }
+
+      #popup {
+        display: flex;
+        height: 100vh;
+        width: 100vw;
+        position: fixed;
+        background-color: #000000aa;
+        top: 0;
+        left: 0;
+        justify-content: center;
+        align-items: center;
+        display: none;
+      }
+
+      #popup article {
+        width: 40%;
+        background-color: whitesmoke;
+        padding-top: 10px;
+      }
+
+      .start {
+        display: flex;
+        flex-direction: column;
+        background: radial-gradient(circle, #f2632f 0%, #c92314 100%);
+      }
+
+      .start :nth-child(1) {
+        align-self: center;
+        align-content: center;
+        padding-top: 2em;
+        width: 50em;
+      }
+
+      .start :nth-child(2) {
+        place-self: center;
+
+        max-height: 270px;
+        max-width: 270px;
+      }
+
+      .logo {
+        padding-left: 1em;
+
+        flex-basis: 0;
+        overflow: hidden;
+      }
+
+      h5 {
+        color: #f2eddf;
+        font-family: "Courier New", Courier, monospace;
+      }
+
+      /* .right {
+        display: flex;
+        flex-direction: row;
+        gap: 1.5em;
+        place-content: end;
+      } */
+
+      /* header {
+        position: sticky;
+        background: radial-gradient(circle, #f05a23 0%, #c92314 100%);
+      } */
+    </style>
+  </head>
+
+  <body>
+    <div id="popup">
+      <article>
+        <img src="" alt="" />
+        <h2></h2>
+        <p></p>
+        <p></p>
+      </article>
+    </div>
+    <!-- <div class="top">
+      <link rel="icon" type="image/png" href="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMWVtIiBoZWlnaHQ9IjFlbSIgdmlld0JveD0iMCAwIDI1NiAyNTYiPjxwYXRoIGZpbGw9ImN1cnJlbnRDb2xvciIgZD0iTTEyOCA4NGE0NCA0NCAwIDEgMCA0NCA0NGE0NCA0NCAwIDAgMC00NC00NFptMCA4MGEzNiAzNiAwIDEgMSAzNi0zNmEzNiAzNiAwIDAgMS0zNiAzNlptNDQtMTMySDg0YTUyIDUyIDAgMCAwLTUyIDUydjg4YTUyIDUyIDAgMCAwIDUyIDUyaDg4YTUyIDUyIDAgMCAwIDUyLTUyVjg0YTUyIDUyIDAgMCAwLTUyLTUyWm00NCAxNDBhNDQgNDQgMCAwIDEtNDQgNDRIODRhNDQgNDQgMCAwIDEtNDQtNDRWODRhNDQgNDQgMCAwIDEgNDQtNDRoODhhNDQgNDQgMCAwIDEgNDQgNDRabS0yOC05NmE4IDggMCAxIDEtOC04YTggOCAwIDAgMSA4IDhaIi8+PC9zdmc+" />
+    </div> -->
+    <div class="start">
+      <img src="babushka3.png" alt="b" />
+
+      <img src="scroll.png" alt="s" />
+    </div>
+
+    <div class="menubar">
+      <!-- <div>
+        <img width="50px" src="logo.png" alt="logo" class="logo" />
+      </div> -->
+      <h1 class="h1center">Menu</h1>
+      <nav class="nav">
+        <!-- data-ret attribut -->
+        <button class="filterKnap valgt" data-kategori="alle">Alle</button>
+        <button class="filterKnap" data-kategori="forretter">Forretter</button>
+        <button class="filterKnap" data-kategori="hovedretter">Hovedretter</button>
+        <button class="filterKnap" data-kategori="desserter">Desserter</button>
+        <button class="filterKnap" data-kategori="drikkevarer">Drikkevarer</button>
+      </nav>
+    </div>
+
+    <main id="beholder"></main>
+
+    <template>
+      <article class="enkelret">
+        <img src="" alt="" class="billede" id="inner" />
+        <h2 class="navn"></h2>
+        <p class="kort_beskrivelse"></p>
+        <p class="pris"></p>
+      </article>
+    </template>
+
+    <script>
+      const header = document.querySelector("h1");
+
+      const endpoint = "https://babushka-dd8a.restdb.io/rest/menu";
+      const mereinfo = {
+        headers: {
+          "x-apikey": "600ec2fb1346a1524ff12de4",
+        },
+      };
+
+      document.addEventListener("DOMContentLoaded", start);
+
+      let retter;
+      let filter = "alle";
+
+      function start() {
+        const filterKnapper = document.querySelectorAll("nav button");
+        filterKnapper.forEach((knap) => knap.addEventListener("click", filtrerKategorier));
+
+        hentData();
+      }
+
+      function filtrerKategorier() {
+        filter = this.dataset.kategori;
+        document.querySelector(".valgt").classList.remove("valgt");
+        this.classList.add("valgt");
+        visKategorier();
+        header.textContent = this.textContent;
+      }
+
+      async function hentData() {
+        const response = await fetch(endpoint, mereinfo);
+        retter = await response.json();
+        visKategorier();
+        // vis(data);
+      }
+
+      function visKategorier() {
+        const holder = document.querySelector("#beholder");
+        const skabelon = document.querySelector("template").content;
+        holder.textContent = "";
+
+        retter.forEach((ret) => {
+          if (filter == ret.kategori || filter == "alle") {
+            const klon = skabelon.cloneNode(true);
+            klon.querySelector("img").src = "medium/" + ret.billednavn + "-md.jpg";
+            klon.querySelector(".enkelret").addEventListener("click", () => visRetter(ret));
+            klon.querySelector(".navn").textContent = ret.navn;
+            klon.querySelector(".kort_beskrivelse").textContent = ret.kortbeskrivelse;
+            klon.querySelector(".pris").textContent = ret.pris + " kr.";
+            // klon.querySelector("img").src = "medium/" + ret.billednavn + "-md.jpg";
+
+            holder.appendChild(klon);
+          }
+        });
+      }
+
+      function visRetter(dataRetter) {
+        console.log({ dataRetter });
+        const popup = document.querySelector("#popup");
+        console.log(popup);
+        popup.style.display = "flex";
+        popup.querySelector("img").src = "medium/" + dataRetter.billednavn + "-md.jpg";
+        popup.querySelector("h2").textContent = dataRetter.navn;
+        popup.querySelector("p").textContent = dataRetter.langbeskrivelse;
+        popup.querySelector("p+p").textContent = dataRetter.pris + " kr.";
+        popup.addEventListener("click", () => {
+          popup.style.display = "none";
+        });
+      }
+
+      hentData();
+    </script>
+  </body>
+</html>

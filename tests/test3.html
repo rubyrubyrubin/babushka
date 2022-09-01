@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>bokse</title>
+    <style>
+      .boks {
+        width: 100px;
+        height: 100px;
+        background-color: orange;
+        margin: 1em;
+      }
+
+      .aktiv {
+        background-color: skyblue;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="boks"></div>
+    <div class="boks"></div>
+    <div class="boks"></div>
+    <script>
+      const alleBokse = document.querySelectorAll(".boks");
+      alleBokse.forEach((boks) => boks.addEventListener("click", aktiver));
+
+      function aktiver() {
+        console.log(this);
+        this.classList.toggle("aktiv");
+      }
+    </script>
+  </body>
+</html>
